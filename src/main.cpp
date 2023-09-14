@@ -2,6 +2,7 @@
 #include <string>
 #include <stdlib.h>
 #include <errno.h>
+#include "BooleanEvaluation.hpp"
 
 using namespace std;
 
