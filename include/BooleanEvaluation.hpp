@@ -6,8 +6,13 @@
 
 class BooleanEvaluation{
 
+    public:
+    
     //CONSTRUTOR:criar uma função que atribui aos valores de repr_Forumla
     //os valores em valuation
+    BooleanEvaluation(){
+
+    }
 
     //Criar uma função que organiza a string na notação polonesa
 
