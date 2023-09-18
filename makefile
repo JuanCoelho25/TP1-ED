@@ -4,19 +4,24 @@ SRC = src
 OBJ = obj
 INC = include
 BIN = bin
-OBJS = $(OBJ)/main.o
+OBJS = $(OBJ)/main.o $(OBJ)/BooleanEvaluation.o
 HDRS = $(INC)/BooleanEvaluation.hpp
 CFLAGS = -Wall -c -g -I$(INC)
 
 EXE = $(BIN)/main
 
 run:  $(EXE)
+		./$(EXE) -a "0 | 1" 01
+		./$(EXE) -a "~ ( 0 | 1 ) & 2" 101
 
 $(BIN)/main: $(OBJS)
 	$(CC) -g -o $(BIN)/main $(OBJS) $(LIBS)
 
 $(OBJ)/main.o: $(HDRS) $(SRC)/main.cpp
-	$(CC) $(CFLAGS) -o $(OBJ)/main.o $(SRC)/main.cpp 
+	$(CC) $(CFLAGS) -o $(OBJ)/main.o $(SRC)/main.cpp
+
+$(OBJ)/BooleanEvaluation.o: $(HDRS) $(SRC)/BooleanEvaluation.cpp
+	$(CC) $(CFLAGS) -o $(OBJ)/BooleanEvaluation.o $(SRC)/BooleanEvaluation.cpp 	 
 	
 clean:
 	rm -f $(EXE) $(OBJS) gmon.out
