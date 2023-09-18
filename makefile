@@ -4,26 +4,19 @@ SRC = src
 OBJ = obj
 INC = include
 BIN = bin
-OBJS = $(OBJ)/matop.o $(OBJ)/mat.o 
-HDRS = $(INC)/mat.h $(INC)/msgassert.h
-CFLAGS = -Wall -c -I$(INC)
+OBJS = $(OBJ)/main.o
+HDRS = $(INC)/BooleanEvaluation.hpp
+CFLAGS = -Wall -c -g -I$(INC)
 
-EXE = $(BIN)/matop
+EXE = $(BIN)/main
 
 run:  $(EXE)
-	$(EXE) -s -x 5 -y 5
-	$(EXE) -m -x 5 -y 5
-	$(EXE) -t -x 5 -y 5
 
+$(BIN)/main: $(OBJS)
+	$(CC) -g -o $(BIN)/main $(OBJS) $(LIBS)
 
-$(BIN)/matop: $(OBJS)
-	$(CC) -g -o $(BIN)/matop $(OBJS) $(LIBS)
-
-$(OBJ)/matop.o: $(HDRS) $(SRC)/matop.c
-	$(CC) $(CFLAGS) -o $(OBJ)/matop.o $(SRC)/matop.c 
-
-$(OBJ)/mat.o: $(HDRS) $(SRC)/mat.c
-	$(CC) $(CFLAGS) -o $(OBJ)/mat.o $(SRC)/mat.c 
+$(OBJ)/main.o: $(HDRS) $(SRC)/main.cpp
+	$(CC) $(CFLAGS) -o $(OBJ)/main.o $(SRC)/main.cpp 
 	
 clean:
 	rm -f $(EXE) $(OBJS) gmon.out
