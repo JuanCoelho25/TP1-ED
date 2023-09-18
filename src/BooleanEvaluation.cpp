@@ -76,3 +76,18 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression, const 
 
     return values.top();
 }
+
+bool BooleanEvaluation::satisfiabilityProblem(const std::string& expression, const std::string& valuation){
+
+    std::unordered_map<int, char> variableMap;
+        // Populate the map with variable-value pairs
+        for (unsigned int i = 0; i < valuation.size(); ++i){
+            variableMap[i] = valuation[i];
+        }
+    for (const auto& pair : variableMap) {
+        char value = pair.second;
+
+    
+
+
+}

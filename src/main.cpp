@@ -19,19 +19,15 @@ void parse_args(int argc, char* argv[], string problem_Type)
 
         BooleanEvaluation avaliacao;
         cout << "Result: " << avaliacao.evaluateExpression(expression, valuation) << endl;
-
     }
+
     else if(problem_Type == "-s"){
         cout << "Problema escolhido: Satisfabilidade" << endl;
 
-        std::unordered_map<int, char> variableMap;
-
-        // Populate the map with variable-value pairs
-        for (unsigned int i = 0; i < valuation.size(); ++i) {
-            variableMap[i] = valuation[i];
-        }
-
+        BooleanEvaluation avaliacao;
+        cout << "Result: " << avaliacao.satisfiabilityProblem(expression, valuation) << endl;
     }
+    //**Tentar fazer um try catch para pegar a exceção quando a opção escolhida é diferente de -a ou -s**
 }
 
     

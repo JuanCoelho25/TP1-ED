@@ -14,7 +14,7 @@ class BooleanEvaluation{
     bool evaluateExpression(const std::string& expression, const std::string& valuation);
 
     // Determines whether there exists an assignment of truth values 
-    bool satisfiabilityProblem(const std::string& expression, const std::unordered_map<int, char>& variableMap, const std::string& valuation, int variable);
+    bool satisfiabilityProblem(const std::string& expression, const std::string& valuation);
 
 
 };
