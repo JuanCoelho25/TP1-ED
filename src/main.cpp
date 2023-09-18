@@ -21,7 +21,7 @@ void parse_args(int argc, char* argv[], string problem_Type)
 
         // Populate the map with variable-value pairs
         for (unsigned int i = 0; i < valuation.size(); ++i) {
-        variableMap[i] = (valuation[i] == '1');
+            variableMap[i] = (valuation[i] == '1');
         }
 
         BooleanEvaluation avaliacao;
@@ -30,6 +30,8 @@ void parse_args(int argc, char* argv[], string problem_Type)
     }
     else if(problem_Type == "-s"){
         cout << "Problema escolhido: Satisfabilidade" << endl;
+
+
     }
 }
 
@@ -42,7 +44,7 @@ int main(int argc, char* argv[]){
         cerr << " ./Executable_name " << "<Problem type> " << "<Representation formula> " << "<Valuation>" << endl;
     }
 
-    string problem_Type (argv[1]); //What is the problem the user wants
+    string problem_Type (argv[1]); // What is the problem the user wants
 
     parse_args(argc, argv, problem_Type);
 

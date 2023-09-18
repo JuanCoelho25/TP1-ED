@@ -10,8 +10,11 @@ class BooleanEvaluation{
 
     public:
 
-    //Evaluates the boolean expression
+    // Evaluates the boolean expression
     bool evaluateExpression(const std::string& expression, const std::unordered_map<int, bool>& variableMap);
+
+    // Determines whether there exists an assignment of truth values 
+    bool satisfiabilityProblem();
 
 
 };
