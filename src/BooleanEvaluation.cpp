@@ -4,9 +4,16 @@
 #include <stack>
 #include <unordered_map>
 
-bool BooleanEvaluation::evaluateExpression(const std::string& expression, const std::unordered_map<int, bool>& variableMap){
+bool BooleanEvaluation::evaluateExpression(const std::string& expression, const std::string& valuation){
         std::stack<char> operators;
         std::stack<bool> values;
+
+        std::unordered_map<int, bool> variableMap;
+
+        // Populate the map with variable-value pairs
+        for (unsigned int i = 0; i < valuation.size(); ++i) {
+            variableMap[i] = (valuation[i] == '1');
+        }
 
         for (char ch : expression) {
             if (ch == ' ') {

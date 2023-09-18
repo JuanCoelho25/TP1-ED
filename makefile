@@ -12,6 +12,7 @@ EXE = $(BIN)/main
 
 run:  $(EXE)
 		./$(EXE) -a "0 | 1" 01
+		./$(EXE) -a "0 | 1 & 2" 010
 		./$(EXE) -a "~ ( 0 | 1 ) & 2" 101
 
 $(BIN)/main: $(OBJS)

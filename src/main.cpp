@@ -17,20 +17,19 @@ void parse_args(int argc, char* argv[], string problem_Type)
     if(problem_Type == "-a"){
         cout << "Problema escolhido: Avaliacao de expressoes" << endl;
 
-        std::unordered_map<int, bool> variableMap;
-
-        // Populate the map with variable-value pairs
-        for (unsigned int i = 0; i < valuation.size(); ++i) {
-            variableMap[i] = (valuation[i] == '1');
-        }
-
         BooleanEvaluation avaliacao;
-        cout << "Result: " << avaliacao.evaluateExpression(expression, variableMap) << endl;
+        cout << "Result: " << avaliacao.evaluateExpression(expression, valuation) << endl;
 
     }
     else if(problem_Type == "-s"){
         cout << "Problema escolhido: Satisfabilidade" << endl;
 
+        std::unordered_map<int, char> variableMap;
+
+        // Populate the map with variable-value pairs
+        for (unsigned int i = 0; i < valuation.size(); ++i) {
+            variableMap[i] = valuation[i];
+        }
 
     }
 }
