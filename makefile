@@ -14,6 +14,8 @@ run:  $(EXE)
 		./$(EXE) -a "0 | 1" 01
 		./$(EXE) -a "0 | 1 & 2" 010
 		./$(EXE) -a "~ ( 0 | 1 ) & 2" 101
+		./$(EXE) -s "0 | 1 & 2" 0e0
+		./$(EXE) -s	"0 | 1 & 2" e00
 
 $(BIN)/main: $(OBJS)
 	$(CC) -g -o $(BIN)/main $(OBJS) $(LIBS)

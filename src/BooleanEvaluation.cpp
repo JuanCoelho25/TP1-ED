@@ -77,16 +77,24 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression, const 
     return values.top();
 }
 
-bool BooleanEvaluation::satisfiabilityProblem(const std::string& expression, const std::string& valuation){
+bool BooleanEvaluation::satisfiabilityProblem(const std::string& expression, std::string& valuation){
+    for (unsigned int i = 0; i < valuation.size(); ++i) {
+        if (valuation[i] == 'e') {
+            // Replace 'e' with '1' to represent true or any other character you prefer
+            valuation[i] = '1'; // Replace with your desired character
+            
+            BooleanEvaluation firstExpression;
+            //Aqui há um erro pois o primeiro caracter é 1 e não 0;
+            bool result1 = firstExpression.evaluateExpression(expression, valuation);
+            
+            // You can choose to replace '1' with '0' or another character for the second case
+            valuation[i] = '0'; // Replace with your desired character
+            BooleanEvaluation secondExpression;
+            bool result2 = secondExpression.evaluateExpression(expression, valuation);
 
-    std::unordered_map<int, char> variableMap;
-        // Populate the map with variable-value pairs
-        for (unsigned int i = 0; i < valuation.size(); ++i){
-            variableMap[i] = valuation[i];
+            return (result1 || result2);
         }
-    for (const auto& pair : variableMap) {
-        char value = pair.second;
-
+    }
     
 
 
