@@ -3,8 +3,6 @@
 
 #include <iostream>
 #include <string>
-#include <stack>
-#include <unordered_map>
 
 class BooleanEvaluation{
 
