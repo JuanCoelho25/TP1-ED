@@ -2,10 +2,6 @@
 #include "Stack.hpp"
 #include <iostream>
 #include <string>
-#include <stdlib.h>
-#include <errno.h>
-#include <unordered_map>
-
 
 using namespace std;
 
