@@ -2,77 +2,78 @@
 #include "Stack.hpp"
 #include <iostream>
 #include <string>
-#include <unordered_map>
+#include <array>
 
 bool BooleanEvaluation::evaluateExpression(const std::string& expression, const std::string& valuation){
-        Stack <char> operators;
-        Stack <bool> values;
+    Stack <char> operators;
+    Stack <bool> values;
 
-        std::unordered_map<int, bool> variableMap;
+    // Assuming that the maximum variable index is equal to the size of the valuation string
+    std::array<bool, 10> variableArray;
 
-        // Populate the map with variable-value pairs
-        for (unsigned int i = 0; i < valuation.size(); ++i) {
-            variableMap[i] = (valuation[i] == '1');
-        }
+    // Populate the array with variable-value pairs
+    for (unsigned int i = 0; i < valuation.size(); ++i) {
+        variableArray[i] = (valuation[i] == '1');
+    }
 
-        for (char ch : expression) {
-            if (ch == ' ') {
-                continue; // Skip spaces
-            } else if (ch == '(' || ch == '&' || ch == '|' || ch == '~') {
-                operators.push(ch);
-            } else if (ch == ')') {
-                // Handle closing parenthesis
-                while (!operators.isEmpty() && operators.top() != '(') {
-                    char op = operators.top();
-                    operators.pop();
+    for (char ch : expression) {
+        if (ch == ' ') {
+            continue; // Skip spaces
+        } else if (ch == '(' || ch == '&' || ch == '|' || ch == '~') {
+            operators.push(ch);
+        } else if (ch == ')') {
+            // Handle closing parenthesis
+            while (!operators.isEmpty() && operators.top() != '(') {
+                char op = operators.top();
+                operators.pop();
 
-                    if (op == '~') {
-                        bool operand = values.top();
-                        values.pop();
-                        values.push(!operand); // Apply NOT operation
-                    } else {
-                        bool operand2 = values.top();
-                        values.pop();
-                        bool operand1 = values.top();
-                        values.pop();
+                if (op == '~') {
+                    bool operand = values.top();
+                    values.pop();
+                    values.push(!operand); // Apply NOT operation
+                } else {
+                    bool operand2 = values.top();
+                    values.pop();
+                    bool operand1 = values.top();
+                    values.pop();
 
-                        if (op == '&') {
-                            values.push(operand1 && operand2);
-                        } else if (op == '|') {
-                            values.push(operand1 || operand2);
-                        }
+                    if (op == '&') {
+                        values.push(operand1 && operand2);
+                    } else if (op == '|') {
+                        values.push(operand1 || operand2);
                     }
                 }
-                operators.pop(); // Pop the '('
-            } else {
-                // Handle variables
-                int variable = ch - '0';
-                values.push(variableMap.at(variable));
+            }
+            operators.pop(); // Pop the '('
+        } else {
+            // Handle variables
+            int variable = ch - '0';
+            values.push(variableArray[variable]);
+        }
+    }
+
+    // Handle remaining operators
+    while (!operators.isEmpty()) {
+        char op = operators.top();
+        operators.pop();
+
+        if (op == '~') {
+            bool operand = values.top();
+            values.pop();
+            values.push(!operand);
+        } else {
+            bool operand2 = values.top();
+            values.pop();
+            bool operand1 = values.top();
+            values.pop();
+
+            if (op == '&') {
+                values.push(operand1 && operand2);
+            } else if (op == '|') {
+                values.push(operand1 || operand2);
             }
         }
-
-        // Handle remaining operators
-        while (!operators.isEmpty()) {
-            char op = operators.top();
-            operators.pop();
-
-            if (op == '~') {
-                bool operand = values.top();
-                values.pop();
-                values.push(!operand);
-            } else {
-                bool operand2 = values.top();
-                values.pop();
-                bool operand1 = values.top();
-                values.pop();
-
-                if (op == '&') {
-                    values.push(operand1 && operand2);
-                } else if (op == '|') {
-                    values.push(operand1 || operand2);
-                }
-            }
-        }
+    }
 
     return values.top();
 }
