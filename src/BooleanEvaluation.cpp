@@ -82,7 +82,6 @@ bool BooleanEvaluation::satisfiabilityProblem(const std::string& expression, std
             valuation[i] = '1'; // Replace with your desired character
             
             BooleanEvaluation firstExpression;
-            //Aqui há um erro pois o primeiro caracter é 1 e não 0;
             bool result1 = firstExpression.evaluateExpression(expression, valuation);
             
             // You can choose to replace '1' with '0' or another character for the second case
@@ -91,6 +90,21 @@ bool BooleanEvaluation::satisfiabilityProblem(const std::string& expression, std
             bool result2 = secondExpression.evaluateExpression(expression, valuation);
 
             return (result1 || result2);
+        }
+
+        else if(valuation[i] == 'a') {
+            // Replace 'a' with '1' to represent true or any other character you prefer
+            valuation[i] = '1'; // Replace with your desired character
+            
+            BooleanEvaluation firstExpression;
+            bool result1 = firstExpression.evaluateExpression(expression, valuation);
+            
+            // You can choose to replace '1' with '0' or another character for the second case
+            valuation[i] = '0'; // Replace with your desired character
+            BooleanEvaluation secondExpression;
+            bool result2 = secondExpression.evaluateExpression(expression, valuation);
+
+            return (result1 && result2);
         }
     }
     
