@@ -1,9 +1,7 @@
+#include "BooleanEvaluation.hpp"
+#include "Stack.hpp"
 #include <iostream>
 #include <string>
-#include <stdlib.h>
-#include <errno.h>
-#include <unordered_map>
-#include <BooleanEvaluation.hpp>
 
 using namespace std;
 
