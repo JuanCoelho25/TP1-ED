@@ -1,100 +1,57 @@
 #include "Stack.hpp"
 
 template <typename T>
+Stack<T>::Stack() : capacity(10), stackSize(0) {
+    elements = new T[capacity];
+}
 
-    bool Stack<T>::empty()
-    {
-        if (top <= 0) {
-            return true;
+template <typename T>
+void Stack<T>::push(const T& item) {
+    if (stackSize >= capacity) {
+        size_t newCapacity = capacity * 2;
+        T* newElements = new T[newCapacity];
+
+        for (size_t i = 0; i < stackSize; i++) {
+            newElements[i] = elements[i];
         }
-        else return false;    
+
+        delete[] elements;
+        elements = newElements;
+        capacity = newCapacity;
     }
 
-    void Stack<T>::push(int x)
-    {
-        // If stack is empty
-        if (empty()) {
-            minEle = x;
-            arr[top] = x;
-            top++;
-        }
-        // If array is full
-        else if (top == Max) {
-            Max = 2 * Max;
- 
-            int* temp = new int(Max);
- 
-            // Traverse the array arr[]
-            for (int i = 0; i < top; i++) {
-                temp[i] = arr[i];
-            }
+    elements[stackSize++] = item;
+}
 
-            if (x < minEle) {
-                temp[top] = 2 * x - minEle;
-                minEle = x;
-                top++;
-            }
-            else {
-                temp[top] = x;
-                top++;
-            }
-            arr = temp;
-        }
-        else {
-            if (x < minEle) {
-                arr[top] = 2 * x - minEle;
-                top++;
-                minEle = x;
-            }
-            else {
-                arr[top] = x;
-                top++;
-            }
-        }
+template <typename T>
+void Stack<T>::pop() {
+    if (!isEmpty()) {
+        stackSize--;
     }
-    
+}
 
-    void Stack<T>::pop()
-    {
-        // If stack is empty
-        if (empty()) {
-            cout << "Underflow" << endl;
-            return;
-        }
-        int t = arr[top - 1];
-        if (t < minEle) {
-            cout << "Popped element : " << minEle << endl;
-            minEle = 2 * minEle - t;
-        }
-        else {
-            cout << "Popped element : " << t << endl;
-        }
-        top--;
-        return;
+template <typename T>
+T Stack<T>::top() const {
+    if (!isEmpty()) {
+        return elements[stackSize - 1];
     }
- 
-    int Stack<T>::peek()
-    {
-        if (empty()) {
-            cout << "Underflow" << endl;
-            return -1;
-        }
-        int t = arr[top - 1];
-        if (t < minEle) {
-            return minEle;
-        }
-        else {
-            return t;
-        }
-    }
+    return T();
+}
 
-    int Stack<T>::getMin()
-    {
-        if (empty()) {
-            cout << "Underflow" << endl;
-            return -1;
-        }
-        else {
-            return minEle;
-        }
-    }
+template <typename T>
+bool Stack<T>::isEmpty() const {
+    return stackSize == 0;
+}
+
+template <typename T>
+size_t Stack<T>::size() const {
+    return stackSize;
+}
+
+template <typename T>
+Stack<T>::~Stack() {
+    delete[] elements;
+}
+
+template class Stack<char>;
+template class Stack<bool>;

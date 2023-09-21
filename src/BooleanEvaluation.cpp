@@ -5,8 +5,8 @@
 #include <unordered_map>
 
 bool BooleanEvaluation::evaluateExpression(const std::string& expression, const std::string& valuation){
-        std::stack<char> operators;
-        std::stack<bool> values;
+        Stack <char> operators;
+        Stack <bool> values;
 
         std::unordered_map<int, bool> variableMap;
 
@@ -22,7 +22,7 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression, const 
                 operators.push(ch);
             } else if (ch == ')') {
                 // Handle closing parenthesis
-                while (!operators.empty() && operators.top() != '(') {
+                while (!operators.isEmpty() && operators.top() != '(') {
                     char op = operators.top();
                     operators.pop();
 
@@ -52,7 +52,7 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression, const 
         }
 
         // Handle remaining operators
-        while (!operators.empty()) {
+        while (!operators.isEmpty()) {
             char op = operators.top();
             operators.pop();
 
