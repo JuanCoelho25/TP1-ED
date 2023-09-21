@@ -1,7 +1,7 @@
 #include "BooleanEvaluation.hpp"
+#include "Stack.hpp"
 #include <iostream>
 #include <string>
-#include <stack>
 #include <unordered_map>
 
 bool BooleanEvaluation::evaluateExpression(const std::string& expression, const std::string& valuation){

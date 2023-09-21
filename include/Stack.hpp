@@ -1,15 +1,15 @@
 #ifndef STACK_HPP
 #define STACK_HPP
 
+template <typename T>
 
 class Stack {
 private:
     int Max = 5;
-    int* arr = new int(Max);
-    int minEle = 0;
+    T* arr = new int(Max);
+    T minEle = 0;
     int top = 0;
     
- 
 public:
 
     // Method to check whether
@@ -18,7 +18,7 @@ public:
 
     // Method to push elements
     // to the Special Stack
-    void push(int x);
+    void push(T x);
     
     // Method to pop the elements
     // from the stack.
@@ -26,11 +26,11 @@ public:
  
     // Method to find the topmost
     // element of the stack
-    int peek();
+    T peek();
 
     // Method to find the Minimum
     // element of the Special stack
-    int getMin();
+    T getMin();
 };
 
 

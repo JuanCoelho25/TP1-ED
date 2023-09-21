@@ -1,6 +1,8 @@
 #include "Stack.hpp"
 
-    bool Stack::empty()
+template <typename T>
+
+    bool Stack<T>::empty()
     {
         if (top <= 0) {
             return true;
@@ -8,7 +10,7 @@
         else return false;    
     }
 
-    void Stack::push(int x)
+    void Stack<T>::push(int x)
     {
         // If stack is empty
         if (empty()) {
@@ -52,7 +54,7 @@
     }
     
 
-    void Stack::pop()
+    void Stack<T>::pop()
     {
         // If stack is empty
         if (empty()) {
@@ -71,7 +73,7 @@
         return;
     }
  
-    int Stack::peek()
+    int Stack<T>::peek()
     {
         if (empty()) {
             cout << "Underflow" << endl;
@@ -86,7 +88,7 @@
         }
     }
 
-    int Stack::getMin()
+    int Stack<T>::getMin()
     {
         if (empty()) {
             cout << "Underflow" << endl;
