@@ -2,14 +2,13 @@
 #include "Stack.hpp"
 #include <iostream>
 #include <string>
-#include <array>
 
 bool BooleanEvaluation::evaluateExpression(const std::string& expression, const std::string& valuation){
-    Stack <char> operators;
-    Stack <bool> values;
+    Stack<char> operators;
+    Stack<bool> values;
 
-    // Assuming that the maximum variable index is equal to the size of the valuation string
-    std::array<bool, 10> variableArray;
+    int size = valuation.size();
+    bool* variableArray = new bool [size];
 
     // Populate the array with variable-value pairs
     for (unsigned int i = 0; i < valuation.size(); ++i) {
@@ -18,11 +17,10 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression, const 
 
     for (char ch : expression) {
         if (ch == ' ') {
-            continue; // Skip spaces
+            continue; // Skip the spaces
         } else if (ch == '(' || ch == '&' || ch == '|' || ch == '~') {
             operators.push(ch);
         } else if (ch == ')') {
-            // Handle closing parenthesis
             while (!operators.isEmpty() && operators.top() != '(') {
                 char op = operators.top();
                 operators.pop();
@@ -30,7 +28,7 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression, const 
                 if (op == '~') {
                     bool operand = values.top();
                     values.pop();
-                    values.push(!operand); // Apply NOT operation
+                    values.push(!operand); // Applies not
                 } else {
                     bool operand2 = values.top();
                     values.pop();
@@ -44,15 +42,14 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression, const 
                     }
                 }
             }
-            operators.pop(); // Pop the '('
+            operators.pop(); // Removes '('
         } else {
-            // Handle variables
             int variable = ch - '0';
             values.push(variableArray[variable]);
         }
     }
 
-    // Handle remaining operators
+    // Remaining operators
     while (!operators.isEmpty()) {
         char op = operators.top();
         operators.pop();
