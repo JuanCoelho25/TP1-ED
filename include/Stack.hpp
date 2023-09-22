@@ -5,34 +5,40 @@
 #include <string>
 
 template <typename T>
+
+class Node {
+public:
+	T data;
+	Node* link;
+
+	Node(T n)
+	{
+		this->data = n;
+		this->link = NULL;
+	}
+};
+
+template <typename T>
 class Stack {
 private:
-    T* elements;        // Pointer to the dynamic array
-    size_t capacity;    // Current capacity of the dynamic array
-    size_t stackSize;   // Number of elements in the stack
+	Node <T>* top_;
 
 public:
-    // Constructor: Initialize the stack with default capacity and size.
-    Stack();
+	Stack();
 
-    // Push an element onto the stack.
-    void push(const T& item);
+	void push(T data);
 
-    // Pop and remove the top element from the stack.
-    void pop();
+	bool isEmpty();
 
-    // Get the top element of the stack.
-    T top() const;
+	T top();
 
-    // Check if the stack is empty.
-    bool isEmpty() const;
+	void pop();
 
-    // Get the number of elements in the stack.
-    size_t size() const;
-
-    // Destructor: Free memory allocated for the dynamic array.
     ~Stack();
+
 };
+
+
 
 
 #endif

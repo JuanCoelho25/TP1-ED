@@ -1,56 +1,60 @@
 #include "Stack.hpp"
 
+using namespace std;
+
 template <typename T>
-Stack<T>::Stack() : capacity(10), stackSize(0) {
-    elements = new T[capacity];
+Stack<T>::Stack(){
+    top_ = NULL;
 }
 
 template <typename T>
-void Stack<T>::push(const T& item) {
-    if (stackSize >= capacity) {
-        size_t newCapacity = capacity * 2;
-        T* newElements = new T[newCapacity];
+void Stack<T>::push(T data){
+		Node <T>* temp = new Node(data);
 
-        for (size_t i = 0; i < stackSize; i++) {
-            newElements[i] = elements[i];
-        }
-
-        delete[] elements;
-        elements = newElements;
-        capacity = newCapacity;
-    }
-
-    elements[stackSize++] = item;
-}
+		// Check if stack (heap) is full.
+		if (!temp) {
+			cout << "\nStack Overflow";
+			exit(1);
+		}
+		temp->data = data;
+		temp->link = top_;
+		top_ = temp;
+	}
 
 template <typename T>
 void Stack<T>::pop() {
-    if (!isEmpty()) {
-        stackSize--;
-    }
+    Node <T>* temp;
+
+		if (top_ == NULL) {
+			cout << "\nStack Underflow" << endl;
+			exit(1);
+		}
+		else {
+			temp = top_;
+			top_ = top_->link;
+			free(temp);
+		}
 }
 
 template <typename T>
-T Stack<T>::top() const {
-    if (!isEmpty()) {
-        return elements[stackSize - 1];
-    }
-    return T();
+T Stack<T>::top(){
+    if (!isEmpty())
+			return top_->data;
+		else
+			exit(1);
 }
 
 template <typename T>
-bool Stack<T>::isEmpty() const {
-    return stackSize == 0;
+bool Stack<T>::isEmpty(){
+    return top_ == NULL;
 }
 
-template <typename T>
-size_t Stack<T>::size() const {
-    return stackSize;
-}
 
 template <typename T>
 Stack<T>::~Stack() {
-    delete[] elements;
+    while (!this->isEmpty()){
+            pop();
+    }
 }
 
 template class Stack<char>;
