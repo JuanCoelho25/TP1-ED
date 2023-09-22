@@ -32,7 +32,7 @@ void Stack<T>::pop() {
 		else {
 			temp = top_;
 			top_ = top_->link;
-			free(temp);
+			delete temp;
 		}
 }
 

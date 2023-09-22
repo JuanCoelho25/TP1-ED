@@ -24,6 +24,7 @@ private:
 	Node <T>* top_;
 
 public:
+    // Constructor: Initialize the stack with a nullptr
 	Stack();
 
 	// Pushes an element onto the stack

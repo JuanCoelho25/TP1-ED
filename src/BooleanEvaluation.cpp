@@ -71,8 +71,10 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression, const 
             }
         }
     }
-
-    return values.top();
+    bool finalValue = values.top();
+    operators.~Stack();
+    values.~Stack();
+    return finalValue;
 }
 
 bool BooleanEvaluation::satisfiabilityProblem(const std::string& expression, std::string& valuation){
