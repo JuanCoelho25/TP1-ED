@@ -15,6 +15,6 @@ class TreeNode {
             left = nullptr;
             right = nullptr;
         }
-}
+};
 
 #endif
