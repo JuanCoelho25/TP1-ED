@@ -26,14 +26,19 @@ private:
 public:
 	Stack();
 
+	// Pushes an element onto the stack
 	void push(T data);
 
+	// Checks if the stack is empty
 	bool isEmpty();
 
+	// Returns the top element of the stack without removing it
 	T top();
 
+	// Removes the top element from the stack
 	void pop();
 
+	// Destructor for the Stack class
     ~Stack();
 
 };
