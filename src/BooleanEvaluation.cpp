@@ -12,7 +12,7 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression, const 
 
     // Populate the array with variable-value pairs
     for (unsigned int i = 0; i < valuation.size(); ++i) {
-        variableArray[i] = (valuation[i] == '1');
+        variableArray[i + 1] = (valuation[i] == '1');
     }
 
     for (char ch : expression) {

@@ -6,16 +6,16 @@ INC = include
 BIN = bin
 OBJS = $(OBJ)/main.o $(OBJ)/Stack.o $(OBJ)/BooleanEvaluation.o
 HDRS = $(INC)/BooleanEvaluation.hpp $(INC)/Stack.hpp
-CFLAGS = -Wall -c -g -I$(INC)
+CFLAGS = -Wall -std=c++11 -c -g -I$(INC)
 
 EXE = $(BIN)/main
 
 run:  $(EXE)
-		./$(EXE) -a "0 | 1" 01
-		./$(EXE) -a "0 | 1 & 2" 010
-		./$(EXE) -a "~ ( 0 | 1 ) & 2" 101
-		./$(EXE) -s "0 | 1 & 2" 0e0
-		./$(EXE) -s	"0 | 1 & 2" e00
+		./$(EXE) -a "1 | 2" 01
+		./$(EXE) -a "1 | 2 & 3" 010
+		./$(EXE) -a "~ ( 1 | 2 ) & 3" 101
+		./$(EXE) -s "1 | 2 & 3" 0e0
+		./$(EXE) -s	"1 | 2 & 3" e00
 		./$(EXE) -s "1 | 2 & 3" a11
 
 $(BIN)/main: $(OBJS)
