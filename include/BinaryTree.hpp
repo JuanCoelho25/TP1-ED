@@ -17,4 +17,9 @@ class TreeNode {
         }
 };
 
+
+class BinaryTree{
+    
+
+};
 #endif
