@@ -3,17 +3,9 @@
 #include <iostream>
 #include <string>
 
-bool BooleanEvaluation::evaluateExpression(const std::string& expression, const std::string& valuation){
+bool BooleanEvaluation::evaluateExpression(const std::string& expression, bool* variableArray){
     Stack<char> operators;
     Stack<bool> values;
-
-    int size = valuation.size();
-    bool* variableArray = new bool [size];
-
-    // Populate the array with variable-value pairs
-    for (unsigned int i = 0; i < valuation.size(); ++i) {
-        variableArray[i + 1] = (valuation[i] == '1');
-    }
 
     for (char ch : expression) {
         if (ch == ' ') {
@@ -78,6 +70,7 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression, const 
 }
 
 bool BooleanEvaluation::satisfiabilityProblem(const std::string& expression, std::string& valuation){
+    /*
     for (unsigned int i = 0; i < valuation.size(); ++i) {
         if (valuation[i] == 'e') {
             // Replace 'e' with '1' to represent true or any other character you prefer
@@ -109,7 +102,7 @@ bool BooleanEvaluation::satisfiabilityProblem(const std::string& expression, std
             return (result1 && result2);
         }
     }
-    
+        */
 
 
 }
