@@ -30,15 +30,7 @@ void parse_args(int argc, char* argv[], string problem_Type)
     }
 
     else if(problem_Type == "-s"){
-        cout << "Problema escolhido: Satisfabilidade" << endl;
-
-        for (char ch : expression) {
-            int i = 0;
-            if(ch == 0 || ch == 1 || ch == 'a' || ch == 'e'){
-                expression[i] = ch;
-            }
-            i++;
-        }
+        cout << "Problema escolhido: Satisfabilidade" << endl;  
 
         BooleanEvaluation avaliacao;
         cout << "Result: " << avaliacao.satisfiabilityProblem(expression, valuation) << endl;

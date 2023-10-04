@@ -3,6 +3,25 @@
 #include <iostream>
 #include <string>
 
+std::string BooleanEvaluation::variableAssignment(std::string& expression, const std::string& valuation){
+    unsigned int valuationIndex = 0; // Track the index in the valuation string
+
+        //Assignment of the string P value
+        for (unsigned i = 0; i < expression.size(); i++) {
+            char ch = expression[i];
+
+            if (ch != '|' && ch != '&' && ch != '~' && ch != '(' && ch != ')' && ch != ' ') {
+                // Check if the valuationIndex is within the bounds of the valuation string
+                if (valuationIndex < valuation.size()) {
+                    expression[i] = valuation[valuationIndex++]; // Assign the value from valuation and increment the index
+                }
+            }
+        std::cout << expression[i];
+    }
+     std::cout << "\n";
+    return expression;
+}
+
 bool BooleanEvaluation::evaluateExpression(const std::string& expression, bool* variableArray){
     Stack<char> operators;
     Stack<bool> values;
@@ -69,40 +88,6 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression, bool* 
     return finalValue;
 }
 
-bool BooleanEvaluation::satisfiabilityProblem(const std::string& expression, std::string& valuation){
-    /*
-    for (unsigned int i = 0; i < valuation.size(); ++i) {
-        if (valuation[i] == 'e') {
-            // Replace 'e' with '1' to represent true or any other character you prefer
-            valuation[i] = '1'; // Replace with your desired character
-            
-            BooleanEvaluation firstExpression;
-            bool result1 = firstExpression.evaluateExpression(expression, valuation);
-            
-            // You can choose to replace '1' with '0' or another character for the second case
-            valuation[i] = '0'; // Replace with your desired character
-            BooleanEvaluation secondExpression;
-            bool result2 = secondExpression.evaluateExpression(expression, valuation);
-
-            return (result1 || result2);
-        }
-
-        else if(valuation[i] == 'a') {
-            // Replace 'a' with '1' to represent true or any other character you prefer
-            valuation[i] = '1'; // Replace with your desired character
-            
-            BooleanEvaluation firstExpression;
-            bool result1 = firstExpression.evaluateExpression(expression, valuation);
-            
-            // You can choose to replace '1' with '0' or another character for the second case
-            valuation[i] = '0'; // Replace with your desired character
-            BooleanEvaluation secondExpression;
-            bool result2 = secondExpression.evaluateExpression(expression, valuation);
-
-            return (result1 && result2);
-        }
-    }
-        */
-
-
+bool BooleanEvaluation::satisfiabilityProblem(std::string& expression, const std::string& valuation){
+    std::string resultExpression = variableAssignment(expression, valuation);
 }

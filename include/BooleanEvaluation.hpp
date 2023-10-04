@@ -8,13 +8,14 @@ class BooleanEvaluation{
 
     public:
 
-    // Fazer um construtor que ordena e atribui os valores da expressão com os valores binários
+    // Assignment of the string p values
+    std::string variableAssignment(std::string& expression, const std::string& valuation);
 
     // Evaluates the boolean expression
     bool evaluateExpression(const std::string& expression, bool* variableArray);
 
     // Determines whether there exists an assignment of truth values 
-    bool satisfiabilityProblem(const std::string& expression, std::string& valuation);
+    bool satisfiabilityProblem(std::string& expression, const std::string& valuation);
 
 
 };
