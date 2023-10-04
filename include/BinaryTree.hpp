@@ -9,6 +9,8 @@ class TreeNode {
         TreeNode* left;
         TreeNode* right;
 
+    friend class BinaryTree;
+
     public:
         TreeNode(T value){
             data = value;
@@ -19,6 +21,11 @@ class TreeNode {
 
 
 class BinaryTree{
+    
+    BinaryTree(){
+        TreeNode* root = nullptr;
+    }
+
     
 
 };
