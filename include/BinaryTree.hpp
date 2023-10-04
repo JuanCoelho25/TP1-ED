@@ -27,7 +27,7 @@ class BinaryTree{
     public:
         BinaryTree() : root(nullptr) {}
 
-        void recursiveInsert(TreeNode<T>* &p, T item){
+        void recursiveInsert(TreeNode<T>* &p, T expression){
             if(p == nullptr){
                 p = new TreeNode <T> ();
                 p->data = item;

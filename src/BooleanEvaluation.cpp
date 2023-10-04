@@ -90,4 +90,5 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression, bool* 
 
 bool BooleanEvaluation::satisfiabilityProblem(std::string& expression, const std::string& valuation){
     std::string resultExpression = variableAssignment(expression, valuation);
+    
 }
