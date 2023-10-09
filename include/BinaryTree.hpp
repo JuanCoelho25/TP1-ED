@@ -1,86 +1,48 @@
 #ifndef BINARYTREE_HPP
 #define BINARYTREE_HPP
 
+#include <string>
 
-struct CharPosition {
-    char character;
-    int position;
-};
 
-template <typename T>
 class TreeNode {
-    private:
-        T data;
+    public:
+        std::string data;
         TreeNode* left;
         TreeNode* right;
 
-    friend class BinaryTree<T>;
-
-    public:
-        TreeNode(T value){
+        TreeNode(char value){
             data = value;
             left = nullptr;
             right = nullptr;
         }
 };
 
-template <typename T>
 class BinaryTree{
     private:
-        TreeNode <T>* root;
+        TreeNode* root;
 
     public:
         BinaryTree() : root(nullptr) {}
 
-        void recursiveInsert(TreeNode<T>* &p, T expression) {
-        // Count the number of occurrences of 'a' or 'e'
-        int count = 0;
-        for (char ch : expression) {
-            if (ch == 'a' || ch == 'e') {
-                count++;
-            }
-        }
-
-        // Dynamically allocate the array of CharPosition
-        CharPosition* charPositions = new CharPosition[count];
-
-        // Populate the array with characters and their positions
-        int indexCount = 0;
-        for (int i = 0; i < expression.size(); i++) {
-            if (expression[i] == 'a' || expression[i] == 'e') {
-                charPositions[indexCount].character = expression[i];
-                charPositions[indexCount].position = i;
-                indexCount++;
-            }
-        }
-
-        if (p == nullptr) {
-            p = new TreeNode<T>();
-            p->data = item; 
-        } else {
-            // Add your condition to check if all 'E' were used and replaced
-            bool allEsUsed = true;
-            for (int i = 0; i < count; i++) {
-                if (charPositions[i].character == 'e' && !isEAlreadyUsedInTree(p, charPositions[i].position)) {
-                    allEsUsed = false;
-                    break;
-                }
+        TreeNode* recursiveInsert(const std::string& expression, size_t pos = 0){
+            if (pos >= expression.size()) {
+                return nullptr;
             }
 
-            if (allEsUsed) {
-                // All 'E' were used and replaced in the tree, implement your logic here
-            } else {
-                // Implement your logic when not all 'E' were used and replaced
+            TreeNode* root = new TreeNode(expression[pos]);
+
+            if (expression[pos] == 'a' || expression[pos] == 'e') {
+                // If the variable is 'a' or 'e', create two children nodes with '0' and '1'
+                root->left = buildTree(expression, pos + 1);
+                root->left->value = '0';
+
+                root->right = buildTree(expression, pos + 1);
+                root->right->value = '1';
             }
+
+            return root;
         }
 
-        // Don't forget to free the dynamically allocated memory
-        delete[] charPositions;
-    }
-
-        void Insert(T item){
-            recursiveInsert(root, item);
-        }
 
 
     
