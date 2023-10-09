@@ -30,7 +30,7 @@ class BinaryTree{
 
             TreeNode* root = new TreeNode(expression[pos]);
 
-            if (expression[pos] == 'a' || expression[pos] == 'e') {
+            if (expression[pos] == 'e' || expression[pos] == 'a') {
                 // If the variable is 'a' or 'e', create two children nodes with '0' and '1'
                 root->left = buildTree(expression, pos + 1);
                 root->left->data = '0';
