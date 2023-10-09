@@ -17,7 +17,7 @@ std::string BooleanEvaluation::variableAssignment(std::string& expression, const
                 }
             }
         std::cout << expression[i];
-    }
+        }
      std::cout << "\n";
     return expression;
 }
