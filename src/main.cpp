@@ -21,7 +21,7 @@ void parse_args(int argc, char* argv[], string problem_Type)
         // Populate the array with variable-value pairs
         bool* variableArray = new bool [size];
         for (unsigned int i = 0; i < valuation.size(); ++i) {
-            variableArray[i + 1] = (valuation[i] == '1');
+            variableArray[i] = (valuation[i] == '1');
         }
 
         BooleanEvaluation avaliacao;
