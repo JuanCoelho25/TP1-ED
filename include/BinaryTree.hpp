@@ -9,8 +9,9 @@ class TreeNode {
         std::string data;
         TreeNode* left;
         TreeNode* right;
+        bool boolean_result;
 
-        TreeNode(char value){
+        TreeNode(std::string value){
             data = value;
             left = nullptr;
             right = nullptr;
@@ -21,26 +22,15 @@ class BinaryTree{
     public:
         TreeNode* root;
 
-        BinaryTree() : root(nullptr) {}
+        BinaryTree();
 
-        TreeNode* buildTree(const std::string& expression, size_t pos = 0){
-            if (pos >= expression.size()) {
-                return nullptr;
-            }
+        TreeNode* buildTree(const std::string& expression, unsigned int index);
 
-            TreeNode* root = new TreeNode(expression[pos]);
+        void nodeEvaluation(TreeNode* node);
 
-            if (expression[pos] == 'e' || expression[pos] == 'a') {
-                // If the variable is 'a' or 'e', create two children nodes with '0' and '1'
-                root->left = buildTree(expression, pos + 1);
-                root->left->data = '0';
+        void treeEvaluation(TreeNode* root, std::string& expression, unsigned int index);
 
-                root->right = buildTree(expression, pos + 1);
-                root->right->data = '1';
-            }
 
-            return root;
-        }
 
 
 

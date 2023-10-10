@@ -12,21 +12,12 @@ void parse_args(int argc, char* argv[], string problem_Type)
     string expression   (argv[2]); //String that represents the formula
     string valuation    (argv[3]); //String that represents the variable values in the forumla
 
-    int size = valuation.size();
-
 
     if(problem_Type == "-a"){
         cout << "Problema escolhido: Avaliacao de expressoes" << endl;
 
-        // Populate the array with variable-value pairs
-        bool* variableArray = new bool [size];
-        for (unsigned int i = 0; i < valuation.size(); ++i) {
-            variableArray[i] = (valuation[i] == '1');
-        }
-
         BooleanEvaluation avaliacao;
-        cout << "Result: " << avaliacao.evaluateExpression(expression, variableArray) << endl;
-        delete variableArray;
+        cout << "Result: " << avaliacao.evaluateExpression(expression, valuation) << endl;
     }
 
     else if(problem_Type == "-s"){

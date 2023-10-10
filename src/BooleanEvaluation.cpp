@@ -22,9 +22,16 @@ std::string BooleanEvaluation::variableAssignment(std::string& expression, const
     return expression;
 }
 
-bool BooleanEvaluation::evaluateExpression(const std::string& expression, bool* variableArray){
+bool BooleanEvaluation::evaluateExpression(const std::string& expression, std::string valuation){
     Stack<char> operators;
     Stack<bool> values;
+    int size = valuation.size();
+
+        // Populate the array with variable-value pairs
+        bool* variableArray = new bool [size];
+        for (unsigned int i = 0; i < valuation.size(); ++i) {
+            variableArray[i] = (valuation[i] == '1');
+        }
 
     for (char ch : expression) {
         if (ch == ' ') {
@@ -86,6 +93,7 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression, bool* 
     operators.~Stack();
     values.~Stack();
     return finalValue;
+    delete variableArray;
 }
 
 bool BooleanEvaluation::satisfiabilityProblem(std::string& expression, const std::string& valuation){

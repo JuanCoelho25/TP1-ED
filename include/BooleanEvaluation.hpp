@@ -12,7 +12,7 @@ class BooleanEvaluation{
     std::string variableAssignment(std::string& expression, const std::string& valuation);
 
     // Evaluates the boolean expression
-    bool evaluateExpression(const std::string& expression, bool* variableArray);
+    bool evaluateExpression(const std::string& expression, std::string valuation);
 
     // Determines whether there exists an assignment of truth values 
     bool satisfiabilityProblem(std::string& expression, const std::string& valuation);
