@@ -12,11 +12,13 @@ void parse_args(int argc, char* argv[], string problem_Type)
     string expression   (argv[2]); //String that represents the formula
     string valuation    (argv[3]); //String that represents the variable values in the forumla
 
+    string teste1 = "0|1&0|1";
 
     if(problem_Type == "-a"){
         cout << "Problema escolhido: Avaliacao de expressoes" << endl;
 
-        BooleanEvaluation avaliacao;
+        BooleanEvaluation avaliacao, teste;
+        cout << "Result: " << teste.evaluateExpression(teste1) << endl;
         cout << "Result: " << avaliacao.evaluateExpression(expression, valuation) << endl;
     }
 

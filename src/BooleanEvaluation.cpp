@@ -22,6 +22,7 @@ std::string BooleanEvaluation::variableAssignment(std::string& expression, const
     return expression;
 }
 
+
 bool BooleanEvaluation::evaluateExpression(const std::string& expression, std::string valuation){
     Stack<char> operators;
     Stack<bool> values;
@@ -92,8 +93,97 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression, std::s
     bool finalValue = values.top();
     operators.~Stack();
     values.~Stack();
-    return finalValue;
     delete variableArray;
+
+    return finalValue;
+}
+
+bool BooleanEvaluation::evaluateExpression(const std::string& expression){
+    Stack<char> operators;
+    Stack<bool> values;
+
+    for (unsigned int i = 0; i < expression.size(); ++i) {
+        char ch = expression[i];
+
+        if (ch == ' ') {
+            continue; // Skip spaces
+        } else if (ch == '(' || ch == '&' || ch == '|' || ch == '~') {
+            operators.push(ch);
+        } else if (ch == ')') {
+            // Evaluate sub-expression
+            while (!operators.isEmpty() && operators.top() != '(') {
+                char op = operators.top();
+                operators.pop();
+
+                if (op == '~') {
+                    bool operand = values.top();
+                    values.pop();
+                    values.push(!operand); // Apply not
+                } else {
+                    bool operand2 = values.top();
+                    values.pop();
+                    bool operand1 = values.top();
+                    values.pop();
+
+                    if (op == '&') {
+                        values.push(operand1 && operand2);
+                    } else if (op == '|') {
+                        values.push(operand1 || operand2);
+                    }
+                }
+            }
+            operators.pop(); // Remove '('
+        } else if (isdigit(ch)) {
+            // If it's a digit, treat it as a value
+            std::string valueStr;
+            while (i < expression.size() && isdigit(expression[i])) {
+                valueStr += expression[i];
+                ++i;
+            }
+            --i;
+
+            bool value = (valueStr == "1");
+            values.push(value);
+        } else {
+            // If it's not an operator or variable, it must be a value
+            // Find the end of the value and convert it to a boolean
+            std::string valueStr;
+            while (i < expression.size() && isdigit(expression[i])) {
+                valueStr += expression[i];
+                ++i;
+            }
+            --i;
+
+            bool value = (valueStr == "1");
+            values.push(value);
+        }
+    }
+
+    // Evaluate remaining operators
+    while (!operators.isEmpty()) {
+        char op = operators.top();
+        operators.pop();
+
+        if (op == '~') {
+            bool operand = values.top();
+            values.pop();
+            values.push(!operand);
+        } else {
+            bool operand2 = values.top();
+            values.pop();
+            bool operand1 = values.top();
+            values.pop();
+
+            if (op == '&') {
+                values.push(operand1 && operand2);
+            } else if (op == '|') {
+                values.push(operand1 || operand2);
+            }
+        }
+    }
+
+    bool finalValue = values.top();
+    return finalValue;
 }
 
 bool BooleanEvaluation::satisfiabilityProblem(std::string& expression, const std::string& valuation){
