@@ -29,7 +29,10 @@ class BinaryTree{
         void nodeEvaluation(TreeNode* node);
 
         void treeEvaluation(TreeNode* root, std::string& expression, unsigned int index);
+        
+        void BinaryTreeDestructor(TreeNode* node);
 
+        ~BinaryTree();
 
 
 

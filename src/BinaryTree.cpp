@@ -7,7 +7,7 @@ BinaryTree::BinaryTree(){
     root = nullptr;
 }
 
-void nodeEvaluation(TreeNode* node){
+void BinaryTree::nodeEvaluation(TreeNode* node){
     node->boolean_result = evaluateExpression(node->data);
 }
 
@@ -73,6 +73,17 @@ void BinaryTree::treeEvaluation(TreeNode* root, std::string& expression, unsigne
         root->result = 0;
         root->data[index] = '0';
     }
+}
+
+void BinaryTree::BinaryTreeDestructor(TreeNode* node){
+    if(root == nullptr) break;
+
+    BinaryTreeDestructor(node->left);
+    BinaryTreeDestructor(node->right);
+}
+
+BinaryTree::~BinaryTree(){
+    BinaryTreeDestructor(root);
 }
 
 
