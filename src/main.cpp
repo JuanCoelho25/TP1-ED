@@ -1,5 +1,6 @@
-#include "BooleanEvaluation.hpp"
-#include "Stack.hpp"
+#include "../include/BooleanEvaluation.hpp"
+#include "../include/Stack.hpp"
+#include "../include/BinaryTree.hpp"
 #include <iostream>
 #include <string>
 

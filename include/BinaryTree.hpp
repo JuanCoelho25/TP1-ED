@@ -35,9 +35,5 @@ class BinaryTree{
         ~BinaryTree();
 
 
-
-
-    
-
 };
 #endif

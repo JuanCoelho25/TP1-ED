@@ -1,5 +1,6 @@
-#include "BooleanEvaluation.hpp"
-#include "Stack.hpp"
+#include "../include/BooleanEvaluation.hpp"
+#include "../include/Stack.hpp"
+#include "../include/BinaryTree.hpp"
 #include <iostream>
 #include <string>
 
@@ -189,4 +190,10 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression){
 bool BooleanEvaluation::satisfiabilityProblem(std::string& expression, const std::string& valuation){
     std::string resultExpression = variableAssignment(expression, valuation);
     
+    BinaryTree tree;
+
+    tree.root = tree.buildTree(resultExpression, 0);
+    tree.treeEvaluation(tree.root, resultExpression, 0);
+    return tree.root;
+    tree.~BinaryTree();
 }

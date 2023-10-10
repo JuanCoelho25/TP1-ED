@@ -4,8 +4,8 @@ SRC = src
 OBJ = obj
 INC = include
 BIN = bin
-OBJS = $(OBJ)/main.o $(OBJ)/Stack.o $(OBJ)/BooleanEvaluation.o
-HDRS = $(INC)/BooleanEvaluation.hpp $(INC)/Stack.hpp
+OBJS = $(OBJ)/main.o $(OBJ)/Stack.o $(OBJ)/BooleanEvaluation.o $(OBJ)/BinaryTree.o
+HDRS = $(INC)/BooleanEvaluation.hpp $(INC)/Stack.hpp $(INC)/BinaryTree.hpp
 CFLAGS = -Wall -std=c++11 -c -g -I$(INC)
 
 EXE = $(BIN)/main
@@ -29,6 +29,9 @@ $(OBJ)/Stack.o: $(HDRS) $(SRC)/Stack.cpp
 
 $(OBJ)/BooleanEvaluation.o: $(HDRS) $(SRC)/BooleanEvaluation.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/BooleanEvaluation.o $(SRC)/BooleanEvaluation.cpp	 
-	
+
+$(OBJ)/BinaryTree.o: $(HDRS) $(SRC)/BinaryTree.cpp
+	$(CC) $(CFLAGS) -o $(OBJ)/BinaryTree.o $(SRC)/BinaryTree.cpp
+
 clean:
 	rm -f $(EXE) $(OBJS) gmon.out
