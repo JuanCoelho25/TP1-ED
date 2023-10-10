@@ -3,19 +3,18 @@
 #include <string>
 
 
-
 BinaryTree::BinaryTree(){
     root = nullptr;
 }
 
 void nodeEvaluation(TreeNode* node){
-    node->boolean_result = evaluateExpression()
+    node->boolean_result = evaluateExpression(node->data);
 }
 
 BinaryTree::buildTree(std::string expression, unsigned int index){
     TreeNode* root = new TreeNode(expression);
 
-    for(auto i = index; i < expression.length(); i++){
+    for (auto i = index; i < expression.length(); i++){
         if (expression[i] == 'e' || expression[i] == 'a') {
             std::string left = expression;
             left[i] = '0';
@@ -38,8 +37,42 @@ void BinaryTree::treeEvaluation(TreeNode* root, std::string& expression, unsigne
     treeEvaluation(root->right, expression, index + 1);
 
     if (root->left == nullptr && root->right == nullptr) {
-        nodeEvaluation();
-    return;
-  }
+        nodeEvaluation(root);
+        return;
+    }
 
+    if ((root->left->boolean_result == 1) && (root->right->boolean_result == 1)){
+        for (unsigned int i = 0; i < root->data.length(); i++){
+            if (root->right->value[i] != root->left->value[i]) {
+                root->value[i] = 'a';
+            }
+            else {
+                root->data[i] = root->left->data[i];
+            }
+        }
+        root->boolean_result = 1;
+    }
+
+    else if ((root->left->boolean_result) || (root->right->boolean_result)){
+        unsigned int position = index_;
+        while (position < root->data.length() && root->data[position] != 'e' && expression[position] != 'a') {
+            position++;
+        }
+        if (root->data[position] == 'a'){
+            root->boolean_result = 0;
+            break;
+        }
+        std::string value;
+        if (root->right->boolean_result) value = root->right->boolean_result;
+        else {value = root->left->boolean_result;}
+        root->data = value;
+        root->boolean_result = 1;
+    }
+    
+    else {
+        root->result = 0;
+        root->data[index] = '0';
+    }
 }
+
+
