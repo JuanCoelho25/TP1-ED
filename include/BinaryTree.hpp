@@ -24,7 +24,7 @@ class BinaryTree{
 
         BinaryTree();
 
-        TreeNode* buildTree(const std::string& expression, unsigned int index);
+        TreeNode* buildTree(const std::string expression, unsigned int index);
 
         void nodeEvaluation(TreeNode* node);
 

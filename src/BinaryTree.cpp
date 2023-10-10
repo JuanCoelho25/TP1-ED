@@ -8,7 +8,8 @@ BinaryTree::BinaryTree(){
 }
 
 void BinaryTree::nodeEvaluation(TreeNode* node){
-    node->boolean_result = evaluateExpression(node->data);
+    BooleanEvaluation node_;
+    node->boolean_result = node_.evaluateExpression(node->data);
 }
 
 TreeNode* BinaryTree::buildTree(std::string expression, unsigned int index){
@@ -31,7 +32,7 @@ TreeNode* BinaryTree::buildTree(std::string expression, unsigned int index){
 }
 
 void BinaryTree::treeEvaluation(TreeNode* root, std::string& expression, unsigned int index){
-    if (root == nullptr) break;
+    if (root == nullptr) return;
 
     treeEvaluation(root->left, expression, index + 1);
     treeEvaluation(root->right, expression, index + 1);
@@ -43,8 +44,8 @@ void BinaryTree::treeEvaluation(TreeNode* root, std::string& expression, unsigne
 
     if ((root->left->boolean_result == 1) && (root->right->boolean_result == 1)){
         for (unsigned int i = 0; i < root->data.length(); i++){
-            if (root->right->value[i] != root->left->value[i]) {
-                root->value[i] = 'a';
+            if (root->right->data[i] != root->left->data[i]) {
+                root->data[i] = 'a';
             }
             else {
                 root->data[i] = root->left->data[i];
@@ -54,13 +55,13 @@ void BinaryTree::treeEvaluation(TreeNode* root, std::string& expression, unsigne
     }
 
     else if ((root->left->boolean_result) || (root->right->boolean_result)){
-        unsigned int position = index_;
+        unsigned int position = index;
         while (position < root->data.length() && root->data[position] != 'e' && expression[position] != 'a') {
             position++;
         }
         if (root->data[position] == 'a'){
             root->boolean_result = 0;
-            break;
+            return;
         }
         std::string value;
         if (root->right->boolean_result) value = root->right->boolean_result;
@@ -70,13 +71,13 @@ void BinaryTree::treeEvaluation(TreeNode* root, std::string& expression, unsigne
     }
     
     else {
-        root->result = 0;
+        root->boolean_result = 0;
         root->data[index] = '0';
     }
 }
 
 void BinaryTree::BinaryTreeDestructor(TreeNode* node){
-    if(root == nullptr) break;
+    if(root == nullptr) return;
 
     BinaryTreeDestructor(node->left);
     BinaryTreeDestructor(node->right);
