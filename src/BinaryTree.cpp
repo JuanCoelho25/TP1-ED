@@ -11,7 +11,7 @@ void BinaryTree::nodeEvaluation(TreeNode* node){
     node->boolean_result = evaluateExpression(node->data);
 }
 
-BinaryTree::buildTree(std::string expression, unsigned int index){
+TreeNode* BinaryTree::buildTree(std::string expression, unsigned int index){
     TreeNode* root = new TreeNode(expression);
 
     for (auto i = index; i < expression.length(); i++){
