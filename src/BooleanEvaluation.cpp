@@ -203,7 +203,7 @@ void BooleanEvaluation::satisfiabilityProblem(std::string& expression, std::stri
 
     printTree(tree.root);
     std::cout << std::endl;
-    std::string test = tree.treeEvaluation(0);
+    std::string test = tree.treeEvaluation(2);
     std::cout << test << std::endl;
     tree.~BinaryTree();
 }

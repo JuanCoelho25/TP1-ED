@@ -36,6 +36,7 @@ std::string BinaryTree::treeEvaluation(int start = 0) {
         if (root->boolean_result == 0) {
             return "0";
         }
+    expFilter(root->data);
     return "1 " + root->data;
 }
 
@@ -89,6 +90,19 @@ void BinaryTree::BinaryTreeDestructor(TreeNode* node){
 
     BinaryTreeDestructor(node->left);
     BinaryTreeDestructor(node->right);
+}
+
+void BinaryTree::expFilter(std::string& expression){
+    std::string input_str = expression;
+
+    std::string filtered_str = "";
+
+    for (char c : input_str) {
+        if (c == 'a' || c == 'e' || c == '0' || c == '1') {
+            filtered_str += c;
+        }
+    }
+    expression = filtered_str;
 }
 
 BinaryTree::~BinaryTree(){

@@ -36,6 +36,8 @@ class BinaryTree{
         
         void BinaryTreeDestructor(TreeNode* node);
 
+        void expFilter(std::string& expression);
+
         ~BinaryTree();
 
 
