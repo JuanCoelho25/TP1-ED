@@ -22,11 +22,15 @@ class BinaryTree{
     public:
         TreeNode* root;
 
+        std::string expression;
+
         BinaryTree();
 
         TreeNode* buildTree(const std::string expression, unsigned int index);
 
         void nodeEvaluation(TreeNode* node);
+
+        std::string treeEvaluation(int start);
 
         void treeEvaluation(TreeNode* root, std::string& expression, unsigned int index);
         

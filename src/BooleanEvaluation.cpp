@@ -187,13 +187,17 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression){
     return finalValue;
 }
 
-bool BooleanEvaluation::satisfiabilityProblem(std::string& expression, const std::string& valuation){
+void BooleanEvaluation::satisfiabilityProblem(std::string& expression, std::string& valuation){
     std::string resultExpression = variableAssignment(expression, valuation);
     
     BinaryTree tree;
 
-    tree.root = tree.buildTree(resultExpression, 0);
-    tree.treeEvaluation(tree.root, resultExpression, 0);
-    return tree.root;
+    tree.root = tree.buildTree(valuation, 0);
+        for(auto it = tree.root; it != nullptr; it->left){
+            std::cout << it->data << std::endl;
+        }
+    std::cout << "teste" << std::endl;
+    std::cout << tree.treeEvaluation(2);
+    std::cout << "teste" << std::endl;
     tree.~BinaryTree();
 }

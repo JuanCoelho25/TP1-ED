@@ -31,6 +31,15 @@ TreeNode* BinaryTree::buildTree(std::string expression, unsigned int index){
     return root;
 }
 
+std::string BinaryTree::treeEvaluation(int start = 0) {
+    treeEvaluation(root, expression, start);
+
+        if (root->boolean_result == 0) {
+            return "0";
+        }
+    return "1 " + root->data;
+}
+
 void BinaryTree::treeEvaluation(TreeNode* root, std::string& expression, unsigned int index){
     if (root == nullptr) return;
 
