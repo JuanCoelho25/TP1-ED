@@ -187,17 +187,24 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression){
     return finalValue;
 }
 
+void printTree(TreeNode* root) {
+    if (root) {
+        printTree(root->left);
+        std::cout << root->data << " ";
+        printTree(root->right);
+    }
+}
+
 void BooleanEvaluation::satisfiabilityProblem(std::string& expression, std::string& valuation){
     std::string resultExpression = variableAssignment(expression, valuation);
-    
     BinaryTree tree;
+    tree.root = tree.buildTree(resultExpression, 0);
+    tree.expression_ = resultExpression;
 
-    tree.root = tree.buildTree(valuation, 0);
-        for(auto it = tree.root; it != nullptr; it->left){
-            std::cout << it->data << std::endl;
-        }
-    std::cout << "teste" << std::endl;
-    std::cout << tree.treeEvaluation(2);
-    std::cout << "teste" << std::endl;
+    printTree(tree.root);
+    std::cout << std::endl;
+    std::string test = tree.treeEvaluation(0);
+    std::cout << test << std::endl;
     tree.~BinaryTree();
 }
+

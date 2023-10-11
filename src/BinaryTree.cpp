@@ -15,14 +15,14 @@ void BinaryTree::nodeEvaluation(TreeNode* node){
 TreeNode* BinaryTree::buildTree(std::string expression, unsigned int index){
     TreeNode* root = new TreeNode(expression);
 
-    for (auto i = index; i < expression.length(); i++){
+    for (unsigned int i = index; i < expression.length(); i++){
         if (expression[i] == 'e' || expression[i] == 'a') {
             std::string left = expression;
             left[i] = '0';
             root->left = buildTree(left, i + 1);
 
             std::string right = expression;
-            left[i] = '1';
+            right[i] = '1';
             root->right = buildTree(right, i + 1);
 
             break;
@@ -32,8 +32,7 @@ TreeNode* BinaryTree::buildTree(std::string expression, unsigned int index){
 }
 
 std::string BinaryTree::treeEvaluation(int start = 0) {
-    treeEvaluation(root, expression, start);
-
+    treeEvaluation(root, expression_, start);
         if (root->boolean_result == 0) {
             return "0";
         }
@@ -86,7 +85,7 @@ void BinaryTree::treeEvaluation(TreeNode* root, std::string& expression, unsigne
 }
 
 void BinaryTree::BinaryTreeDestructor(TreeNode* node){
-    if(root == nullptr) return;
+    if(node == nullptr) return;
 
     BinaryTreeDestructor(node->left);
     BinaryTreeDestructor(node->right);

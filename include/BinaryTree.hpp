@@ -22,7 +22,7 @@ class BinaryTree{
     public:
         TreeNode* root;
 
-        std::string expression;
+        std::string expression_;
 
         BinaryTree();
 
