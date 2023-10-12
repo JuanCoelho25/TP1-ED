@@ -16,6 +16,12 @@ public:
         left = nullptr;
         right = nullptr;
     }
+
+    // Destructor for TreeNode
+    ~TreeNode(){
+        delete left;
+        delete right;
+    }
 };
 
 class BinaryTree {

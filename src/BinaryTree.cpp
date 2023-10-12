@@ -91,6 +91,8 @@ void BinaryTree::BinaryTreeDestructor(TreeNode* node){
 
     BinaryTreeDestructor(node->left);
     BinaryTreeDestructor(node->right);
+
+    node->~TreeNode();
 }
 
 void BinaryTree::expFilter(std::string& expression){
