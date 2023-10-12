@@ -10,7 +10,6 @@ BinaryTree::BinaryTree(){
 void BinaryTree::nodeEvaluation(TreeNode* node){
     BooleanEvaluation avaliator;
     node->boolean_result = avaliator.evaluateExpression(node->data);
-    //std::cout << node->data << std::endl;
 }
 
 TreeNode* BinaryTree::buildTree(std::string expression, unsigned int index){
@@ -38,7 +37,6 @@ std::string BinaryTree::treeEvaluation(int start = 0) {
         if (root->boolean_result == 0) {
             return "0";
         }
-    std::cout << root->data << std::endl;
     expFilter(root->data);
     return "1 " + root->data;
 }
