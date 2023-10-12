@@ -8,8 +8,9 @@ BinaryTree::BinaryTree(){
 }
 
 void BinaryTree::nodeEvaluation(TreeNode* node){
-    BooleanEvaluation node_;
-    node->boolean_result = node_.evaluateExpression(node->data);
+    BooleanEvaluation avaliator;
+    node->boolean_result = avaliator.evaluateExpression(node->data);
+    //std::cout << node->data << std::endl;
 }
 
 TreeNode* BinaryTree::buildTree(std::string expression, unsigned int index){
@@ -37,6 +38,7 @@ std::string BinaryTree::treeEvaluation(int start = 0) {
         if (root->boolean_result == 0) {
             return "0";
         }
+    std::cout << root->data << std::endl;
     expFilter(root->data);
     return "1 " + root->data;
 }
@@ -76,7 +78,12 @@ void BinaryTree::treeEvaluation(TreeNode* root, std::string& expression, unsigne
         std::string value;
         if (root->right->boolean_result) value = root->right->boolean_result;
         else {value = root->left->boolean_result;}
-        root->data[index] = '1';
+        for (unsigned int i = position; i < root->data.length(); i++) {
+        if (root->data[i] == 'e') {
+            root->data[i] = '1';
+        }
+    }
+        root->data[position] = '1';
         root->boolean_result = 1;
     }
     
@@ -86,13 +93,13 @@ void BinaryTree::treeEvaluation(TreeNode* root, std::string& expression, unsigne
     }
 }
 
+
+
 void BinaryTree::BinaryTreeDestructor(TreeNode* node){
     if(node == nullptr) return;
 
     BinaryTreeDestructor(node->left);
     BinaryTreeDestructor(node->right);
-
-    node->~TreeNode();
 }
 
 void BinaryTree::expFilter(std::string& expression){
