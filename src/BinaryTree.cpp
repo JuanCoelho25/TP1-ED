@@ -24,6 +24,7 @@ TreeNode* BinaryTree::buildTree(std::string expression, unsigned int index){
             std::string right = expression;
             right[i] = '1';
             root->right = buildTree(right, i + 1);
+            
 
             break;
         }
@@ -75,7 +76,7 @@ void BinaryTree::treeEvaluation(TreeNode* root, std::string& expression, unsigne
         std::string value;
         if (root->right->boolean_result) value = root->right->boolean_result;
         else {value = root->left->boolean_result;}
-        root->data = value;
+        root->data[index] = '1';
         root->boolean_result = 1;
     }
     

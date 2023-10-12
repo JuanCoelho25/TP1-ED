@@ -17,9 +17,7 @@ std::string BooleanEvaluation::variableAssignment(std::string& expression, const
                     expression[i] = valuation[valuationIndex++]; // Assign the value from valuation and increment the index
                 }
             }
-        std::cout << expression[i];
         }
-     std::cout << "\n";
     return expression;
 }
 
@@ -201,10 +199,9 @@ void BooleanEvaluation::satisfiabilityProblem(std::string& expression, std::stri
     tree.root = tree.buildTree(resultExpression, 0);
     tree.expression_ = resultExpression;
 
-    printTree(tree.root);
-    std::cout << std::endl;
-    std::string test = tree.treeEvaluation(2);
-    std::cout << test << std::endl;
+    //printTree(tree.root);
+    std::string result = tree.treeEvaluation(0);
+    std::cout << result << std::endl;
     tree.~BinaryTree();
 }
 
