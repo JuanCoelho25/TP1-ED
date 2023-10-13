@@ -4,6 +4,7 @@
 #include "../include/Node.hpp"
 #include <iostream>
 #include <string>
+#include <stdexcept>
 
 std::string BooleanEvaluation::variableAssignment(std::string& expression, const std::string& valuation){
     unsigned int valuationIndex = 0; // Track the index in the valuation string
@@ -11,9 +12,11 @@ std::string BooleanEvaluation::variableAssignment(std::string& expression, const
         //Assignment of the string P value
         for (unsigned i = 0; i < expression.size(); i++) {
             char ch = expression[i];
-
             if (ch != '|' && ch != '&' && ch != '~' && ch != '(' && ch != ')' && ch != ' ') {
                 if (valuationIndex < valuation.size()) {
+                    if(valuation[valuationIndex] != 'a' && valuation[valuationIndex] != 'e' && valuation[valuationIndex] != '0' && valuation[valuationIndex] != '1'){
+                        throw std::invalid_argument("Invalid character in valuation. Allowed characters are '0', '1', 'a', 'e'.");
+                    }
                     expression[i] = valuation[valuationIndex++];
                 }
             }
