@@ -1,4 +1,6 @@
-#include "Stack.hpp"
+#include "../include/Stack.hpp"
+#include "../include/Node.hpp"
+
 
 using namespace std;
 

@@ -1,5 +1,6 @@
 #include "../include/BinaryTree.hpp"
 #include "../include/BooleanEvaluation.hpp"
+#include "../include/Node.hpp"
 #include <string>
 
 
@@ -12,6 +13,7 @@ void BinaryTree::nodeEvaluation(TreeNode* node){
     BooleanEvaluation avaliator;
     node->boolean_result = avaliator.evaluateExpression(node->data);
 }
+
 
 TreeNode* BinaryTree::buildTree(std::string expression, unsigned int index){
     TreeNode* root = new TreeNode(expression);

@@ -3,50 +3,57 @@
 
 #include <iostream>
 #include <string>
+#include "../include/Node.hpp"
 
+/**
+ * @brief Represents a generic stack data structure with basic operations.
+ *
+ * The Stack class is a template class that provides functionality for a stack, including
+ * push, pop, top, and isEmpty operations. It uses a linked list-based implementation.
+ *
+ * @tparam T The type of data stored in the stack.
+ */
 template <typename T>
-
-class StackNode {
-	public:
-		T data;
-		StackNode* link;
-
-		StackNode(T n)
-		{
-			this->data = n;
-			this->link = NULL;
-		}
-};
-
-
-template <typename T>
-
 class Stack {
 	private:
-		StackNode <T>* top_;
+		StackNode <T>* top_; // Pointer to the top of the stack
 
 	public:
-		// Constructor: Initialize the stack with a nullptr
+		/**
+		 * @brief Constructor: Initializes the stack with a nullptr.
+		 */
 		Stack();
 
-		// Pushes an element onto the stack
+		/**
+		 * @brief Pushes an element onto the stack.
+		 *
+		 * @param data The data to be pushed onto the stack.
+		 */
 		void push(T data);
 
-		// Checks if the stack is empty
+		/**
+		 * @brief Checks if the stack is empty.
+		 *
+		 * @return True if the stack is empty, false otherwise.
+		 */
 		bool isEmpty();
 
-		// Returns the top element of the stack without removing it
+		/**
+		 * @brief Returns the top element of the stack without removing it.
+		 *
+		 * @return The top element of the stack.
+		 */
 		T top();
 
-		// Removes the top element from the stack
+		/**
+		 * @brief Removes the top element from the stack.
+		 */
 		void pop();
 
-		// Destructor for the Stack class
+		/**
+		 * @brief Destructor for the Stack class.
+		 */
 		~Stack();
-
 };
 
-
 #endif
-
-

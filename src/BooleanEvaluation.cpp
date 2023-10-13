@@ -1,6 +1,7 @@
 #include "../include/BooleanEvaluation.hpp"
 #include "../include/Stack.hpp"
 #include "../include/BinaryTree.hpp"
+#include "../include/Node.hpp"
 #include <iostream>
 #include <string>
 
@@ -120,5 +121,8 @@ void BooleanEvaluation::satisfiabilityProblem(std::string& expression, std::stri
     std::cout << result << std::endl;
     // tree.~BinaryTree();
 }
+
+
+
 
 
