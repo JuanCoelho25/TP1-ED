@@ -12,9 +12,8 @@ std::string BooleanEvaluation::variableAssignment(std::string& expression, const
             char ch = expression[i];
 
             if (ch != '|' && ch != '&' && ch != '~' && ch != '(' && ch != ')' && ch != ' ') {
-                // Check if the valuationIndex is within the bounds of the valuation string
                 if (valuationIndex < valuation.size()) {
-                    expression[i] = valuation[valuationIndex++]; // Assign the value from valuation and increment the index
+                    expression[i] = valuation[valuationIndex++];
                 }
             }
         }
@@ -47,7 +46,7 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression){
                 if (op == '~') {
                     bool operand = values.top();
                     values.pop();
-                    values.push(!operand); // Apply not
+                    values.push(!operand);
                 } else {
                     bool operand2 = values.top();
                     values.pop();
@@ -61,9 +60,8 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression){
                     }
                 }
             }
-            operators.pop(); // Remove '('
+            operators.pop();
         } else if (isdigit(ch)) {
-            // If it's a digit, treat it as a value
             std::string valueStr;
             while (i < expression.size() && isdigit(expression[i])) {
                 valueStr += expression[i];
@@ -74,8 +72,6 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression){
             bool value = (valueStr == "1");
             values.push(value);
         } else {
-            // If it's not an operator or variable, it must be a value
-            // Find the end of the value and convert it to a boolean
             std::string valueStr;
             while (i < expression.size() && isdigit(expression[i])) {
                 valueStr += expression[i];
@@ -115,21 +111,11 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression){
     return finalValue;
 }
 
-void printTree(TreeNode* root) {
-    if (root) {
-        printTree(root->left);
-        std::cout << root->data << " ";
-        printTree(root->right);
-    }
-}
 
 void BooleanEvaluation::satisfiabilityProblem(std::string& expression, std::string& valuation){
     std::string resultExpression = variableAssignment(expression, valuation);
-    BinaryTree tree;
-    tree.root = tree.buildTree(resultExpression, 0);
-    tree.expression_ = resultExpression;
-
-    //printTree(tree.root);
+    
+    BinaryTree tree (resultExpression);
     std::string result = tree.treeEvaluation(0);
     std::cout << result << std::endl;
     // tree.~BinaryTree();

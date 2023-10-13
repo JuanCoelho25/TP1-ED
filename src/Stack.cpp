@@ -9,7 +9,7 @@ Stack<T>::Stack(){
 
 template <typename T>
 void Stack<T>::push(T data){
-		Node <T>* temp = new Node <T>(data);
+		StackNode <T>* temp = new StackNode <T>(data);
 		// Check if stack (heap) is full.
 		if (!temp) {
 			cout << "\nStack Overflow";
@@ -22,7 +22,7 @@ void Stack<T>::push(T data){
 
 template <typename T>
 void Stack<T>::pop() {
-    Node <T>* temp;
+    StackNode <T>* temp;
 
 		if (top_ == NULL) {
 			cout << "\nStack Underflow" << endl;

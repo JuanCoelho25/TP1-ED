@@ -3,8 +3,9 @@
 #include <string>
 
 
-BinaryTree::BinaryTree(){
-    root = nullptr;
+BinaryTree::BinaryTree(const std::string& expression){
+    root_ = this->buildTree(expression, 0);
+    expression_ = expression;
 }
 
 void BinaryTree::nodeEvaluation(TreeNode* node){
@@ -33,12 +34,12 @@ TreeNode* BinaryTree::buildTree(std::string expression, unsigned int index){
 }
 
 std::string BinaryTree::treeEvaluation(int start = 0) {
-    treeEvaluation(root, expression_, start);
-        if (root->boolean_result == 0) {
+    treeEvaluation(root_, expression_, start);
+        if (root_->boolean_result == 0) {
             return "0";
         }
-    expFilter(root->data);
-    return "1 " + root->data;
+    expFilter(root_->data);
+    return "1 " + root_->data;
 }
 
 void BinaryTree::treeEvaluation(TreeNode* root, std::string& expression, unsigned int index){
@@ -91,6 +92,13 @@ void BinaryTree::treeEvaluation(TreeNode* root, std::string& expression, unsigne
     }
 }
 
+void BinaryTree::printTree(TreeNode* root) {
+    if (root) {
+        printTree(root->left);
+        std::cout << root->data << " ";
+        printTree(root->right);
+    }
+}
 
 
 void BinaryTree::BinaryTreeDestructor(TreeNode* node){
@@ -114,7 +122,7 @@ void BinaryTree::expFilter(std::string& expression){
 }
 
 BinaryTree::~BinaryTree(){
-    BinaryTreeDestructor(root);
+    BinaryTreeDestructor(root_);
 }
 
 

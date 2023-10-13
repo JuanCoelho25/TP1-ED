@@ -6,12 +6,12 @@
 
 template <typename T>
 
-class Node {
+class StackNode {
 	public:
 		T data;
-		Node* link;
+		StackNode* link;
 
-		Node(T n)
+		StackNode(T n)
 		{
 			this->data = n;
 			this->link = NULL;
@@ -23,7 +23,7 @@ template <typename T>
 
 class Stack {
 	private:
-		Node <T>* top_;
+		StackNode <T>* top_;
 
 	public:
 		// Constructor: Initialize the stack with a nullptr
