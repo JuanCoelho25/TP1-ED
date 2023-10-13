@@ -135,3 +135,4 @@ void BooleanEvaluation::satisfiabilityProblem(std::string& expression, std::stri
     // tree.~BinaryTree();
 }
 
+

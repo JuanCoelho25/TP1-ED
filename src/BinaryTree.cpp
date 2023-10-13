@@ -77,8 +77,8 @@ void BinaryTree::treeEvaluation(TreeNode* root, std::string& expression, unsigne
         if (root->right->boolean_result) value = root->right->boolean_result;
         else {value = root->left->boolean_result;}
         for (unsigned int i = position; i < root->data.length(); i++) {
-        if (root->data[i] == 'e') {
-            root->data[i] = '1';
+            if (root->data[i] == 'e') {
+                root->data[i] = '1';
         }
     }
         root->data[position] = '1';
