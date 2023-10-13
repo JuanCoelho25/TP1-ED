@@ -104,10 +104,12 @@ void BinaryTree::printTree(TreeNode* root) {
 
 
 void BinaryTree::BinaryTreeDestructor(TreeNode* node){
-    if(node == nullptr) return;
-
-    BinaryTreeDestructor(node->left);
-    BinaryTreeDestructor(node->right);
+    if (node)
+    {
+        BinaryTreeDestructor(node->left);
+        BinaryTreeDestructor(node->right);
+        delete node;
+    }
 }
 
 void BinaryTree::expFilter(std::string& expression){

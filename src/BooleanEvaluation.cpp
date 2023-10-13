@@ -9,19 +9,36 @@
 std::string BooleanEvaluation::variableAssignment(std::string& expression, const std::string& valuation) {
         unsigned int valuationIndex = 0; // Track the index in the valuation string
 
-        //Assignment of the string P value
         for (unsigned i = 0; i < expression.size(); i++) {
             char ch = expression[i];
-            if (ch != '|' && ch != '&' && ch != '~' && ch != '(' && ch != ')' && ch != ' ') {
-                if (valuationIndex < valuation.size()) {
-                    if(valuation[valuationIndex] != 'a' && valuation[valuationIndex] != 'e' && valuation[valuationIndex] != '0' && valuation[valuationIndex] != '1'){
-                        throw std::invalid_argument("Invalid character in valuation. Allowed characters are '0', '1', 'a', 'e'.");
-                    }
-                    expression[i] = valuation[valuationIndex++];
+            
+            // Check if the character in valuation is allowed
+            if (isdigit(ch)) {
+                int index = ch - '0';
+                if (index < 0 || index >= static_cast<int>(valuation.size())) {
+                    throw std::invalid_argument("Invalid index in expression. Ensure indices are within the valuation size.");
+                }
+                
+                expression[i] = valuation[index];
+            } else if (!(ch == '|' || ch == '&' || ch == '~' || ch == '(' || ch == ')' || ch == ' ')) {
+                // Check if the character is valid in the expression
+                throw std::invalid_argument("Invalid character in expression. Only digits, '|', '&', '~', '(', ')', and spaces are allowed.");
+            }
+
+            // Check if the valuation string contains only allowed characters
+            if (valuationIndex < valuation.size()) {
+                char valuationCh = valuation[valuationIndex++];
+                if (!(valuationCh == '0' || valuationCh == '1' || valuationCh == 'a' || valuationCh == 'e')) {
+                    throw std::invalid_argument("Invalid character in valuation. Allowed characters are '0', '1', 'a', 'e'.");
                 }
             }
         }
-    return expression;
+
+        if (valuationIndex < valuation.size()) {
+            throw std::invalid_argument("Valuation size exceeds the expression size.");
+        }
+
+        return expression;
     }
 
 
@@ -112,6 +129,8 @@ bool BooleanEvaluation::evaluateExpression(const std::string& expression){
     }
 
     bool finalValue = values.top();
+    values.~Stack();
+    operators.~Stack();
     return finalValue;
 }
 
@@ -122,7 +141,7 @@ void BooleanEvaluation::satisfiabilityProblem(std::string& expression, std::stri
     BinaryTree tree (resultExpression);
     std::string result = tree.treeEvaluation(0);
     std::cout << result << std::endl;
-    // tree.~BinaryTree();
+    tree.~BinaryTree();
 }
 
 
