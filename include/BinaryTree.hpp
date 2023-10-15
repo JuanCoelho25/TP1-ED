@@ -14,10 +14,11 @@
  */
 class BinaryTree {
 private:
-    TreeNode* root_;        
+        
     std::string expression_; 
 
 public:
+    TreeNode* root_;
     /**
      * @brief Constructor: Initializes a binary tree with a given boolean expression.
      *
