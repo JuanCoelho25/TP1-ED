@@ -30,6 +30,35 @@ void parse_args(int argc, char* argv[], string problem_Type)
     string expression (argv[2]);  // String that represents the formula
     string valuation  (argv[3]);  // String that represents the variable values in the forumla
 
+    if (expression.size() > 1000000){
+         throw invalid_argument("Error: invalid string p size!");
+    }
+    if (valuation.size() > 100){
+         throw invalid_argument("Error: invalid string s size!");
+    }
+
+     for (char ch : expression)
+    {
+        if (!isdigit(ch) && !isalpha(ch) && ch != '|' && ch != '&' && ch != '~' && ch != '(' && ch != ')' && ch != ' ')
+        {
+            throw invalid_argument("Invalid character in expression. Allowed characters are digits, letters, '|', '&', '~', '(', and ')'.");
+        }
+    }
+
+    // Check if the expression has a number larger than the size of valuation
+    for (char ch : expression)
+    {
+        if (isdigit(ch))
+        {
+            int num = ch - '0';
+            if (num >= valuation.size())
+            {
+                throw invalid_argument("Error: a number in the expression is larger than the size of valuation.");
+            }
+        }
+    }
+
+
     try
     {
         if (problem_Type == "-a")
